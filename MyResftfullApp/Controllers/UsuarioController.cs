@@ -3,7 +3,6 @@
     using Services;
     using System.Web.Http;
     using System.Collections.Generic;
-    using Services;
 
     public class UsuarioController : ApiController
     {

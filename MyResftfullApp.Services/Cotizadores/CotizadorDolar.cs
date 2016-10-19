@@ -1,9 +1,7 @@
 ﻿namespace MyResftfullApp.Services.Cotizadores
 {
-    using System.Web.Helpers;
+    using System.Globalization;
     using Core;
-    using Newtonsoft.Json.Linq;
-    using Services;
     using WebServices;
 
     public class CotizadorDolar:ICotizador
@@ -12,10 +10,10 @@
         {
             var service = new WebRequestService();
             var result = service.DoServiceCall("http://www.bancoprovincia.com.ar/Principal/Dolar");
-
-            //todo parcear result
-
-            return new Cotizacion() {Comentario = result, Compra =1, Venta = 1 };
+            var stringCotizacion = result.Replace("[","").Replace("]", "").Replace("\"","").Split(',');
+            var cultura = CultureInfo.InvariantCulture.Clone() as CultureInfo;
+            cultura.NumberFormat.NumberDecimalSeparator = ".";
+            return new Cotizacion() {Comentario = stringCotizacion[2], Compra = decimal.Parse(stringCotizacion[0], cultura), Venta = decimal.Parse(stringCotizacion[1], cultura) };
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿namespace MyResftfullApp.Services
 {
-    using Services;
     using System;
     using Core;
-    using Services.Cotizadores;
+    using Cotizadores;
     using CotizadorDolar = Cotizadores.CotizadorDolar;
 
     public class CotizacionService

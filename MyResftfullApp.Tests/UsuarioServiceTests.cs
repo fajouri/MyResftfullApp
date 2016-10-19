@@ -2,34 +2,49 @@
 namespace MyResftfullApp.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Collections.Generic;
-    using Data;
+    using Context;
     using Services;
 
     [TestClass]
     public class UsuarioServiceTests
     {
-        private IUsuarioService service;
-        private IMyResftfullAppContext context;
+        private UsuarioService service;
 
-        //[TestInitialize]
-        //public void Setup()
-        //{
-        //    //context = new PortalIntegradoGs1Api.Tests.Context.TestContext();
-        //    //service = new UsuarioService(context, emailSender, new ExpressionBuilderServiceStub());
-        //    context= Mock 
-        //    service = new UsuarioService();
-        //}
+        [TestInitialize]
+        public void Setup()
+        {
+            service = new UsuarioService(new MyResftfullAppTestContext());
+        }
 
-        //[TestMethod]
-        //public void UsuarioService_GetUsuarios_Devuelve_Lista_De_Usuarios()
-        //{
-        //    var result = service.GetUsuarios();
+        [TestMethod]
+        public void UsuarioService_GetUsuarios_Devuelve_Lista_De_Usuarios()
+        {
 
-        //    Assert.IsNotNull(result);
-        //    Assert.IsInstanceOfType(result, typeof(List<Usuario>));
-        //}
+            service = new UsuarioService(new MyResftfullAppTestContext());
+            var usuarios = service.GetUsuarios();
+
+            Assert.AreEqual(2, usuarios.Count);
+            Assert.AreEqual("Fajouri", usuarios[0].Apellido);
+            Assert.AreEqual("Suarez", usuarios[1].Apellido);
+        }
+
+        [TestMethod]
+        public void UsuarioService_GetUsuarioById_Devuelve_Usuario()
+        {
+            var usuario = service.GetUsuarioById(1);
+            Assert.IsNotNull(usuario);
+            Assert.AreEqual(1, usuario.Id);
+            Assert.AreEqual("Fajouri", usuario.Apellido);
+        }
+
+        [TestMethod]
+        public void UsuarioService_GetUsuarioById_Devuelve_Null()
+        {
+            var usuario = service.GetUsuarioById(4);
+            Assert.IsNull(usuario);
+        }
 
     }
+
 }
 
