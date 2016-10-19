@@ -4,49 +4,33 @@
     using Core;
     using Cotizadores;
 
-    public class CotizacionService
+    public class CotizacionService : ICotizacionService
     {
-        private ICotizador _cotizadorStrategy;
-        private Monedas _moneda;
+        private Cotizador _cotizador;
 
-        public CotizacionService(string moneda)
+        public CotizacionService(Cotizador cotizador)
         {
-            _cotizadorStrategy = GetCotizadorStrategy(moneda);
+            _cotizador = cotizador;
         }
 
-        private ICotizador GetCotizadorStrategy(string moneda)
+        public CotizacionService()
+        {
+        }
+
+        public Cotizacion GetCotizacion(string moneda)
         {
             Monedas monedaValue;
 
             if (!Enum.TryParse(moneda, out monedaValue))
                 throw new ArgumentOutOfRangeException(nameof(moneda), moneda, null);
 
-            switch (monedaValue)
-            {
-                case Monedas.Pesos:
-                    return new CotizadorPeso();
-                case Monedas.Dolar:
-                    return new CotizadorDolar();
-                case Monedas.Real:
-                    return new CotizadorReal();
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
+            if (_cotizador == null)
+                _cotizador = new Cotizador(monedaValue);
+            else
+                _cotizador.Moneda = monedaValue;
 
-        public Monedas Moneda
-        {
-            get { return _moneda; }
-            set
-            {
-                _moneda = value;
-                _cotizadorStrategy = GetCotizadorStrategy(value.ToString());
-            }
-        }
-
-        public Cotizacion GetCotizacion()
-        {
-            return _cotizadorStrategy.Cotizar();
+            return _cotizador.GetCotizacion();
         }
     }
+
 }

@@ -5,9 +5,21 @@
     using System.Web.Http;
     using Core;
     using Services;
+    using Services.Cotizadores;
 
     public class CotizacionController : ApiController
     {
+        private readonly ICotizacionService _cotizacionService;
+
+        public CotizacionController()
+            : this(new CotizacionService())
+        {
+        }
+
+        public CotizacionController(ICotizacionService cotizacionService)
+        {
+            _cotizacionService = cotizacionService;
+        }
 
 
         // GET api/<controller>
@@ -23,7 +35,7 @@
             if (string.IsNullOrEmpty(moneda))
                 throw new ArgumentException("Value cannot be null or empty.", nameof(moneda));
 
-            return new CotizacionService(moneda).GetCotizacion();
+            return _cotizacionService.GetCotizacion(moneda);
         }
 
         // POST api/<controller>

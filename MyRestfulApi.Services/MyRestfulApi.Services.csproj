@@ -45,6 +45,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -83,10 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CotizacionService.cs" />
+    <Compile Include="Cotizadores\Cotizador.cs" />
     <Compile Include="Cotizadores\CotizadorDolar.cs" />
     <Compile Include="Cotizadores\CotizadorPeso.cs" />
     <Compile Include="Cotizadores\CotizadorReal.cs" />
     <Compile Include="Cotizadores\ICotizador.cs" />
+    <Compile Include="ICotizacionService.cs" />
     <Compile Include="IUsuarioService.cs" />
     <Compile Include="UsuarioService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
