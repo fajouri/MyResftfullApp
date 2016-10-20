@@ -3,9 +3,9 @@
     using System;
     using Core;
 
-    public class Cotizador
+    public class Cotizador: ICotizador
     {
-        private ICotizador _cotizadorStrategy;
+        private ICotizadorStrategy _cotizadorStrategy;
         private Monedas _moneda;
 
         public Cotizador(Monedas moneda)
@@ -13,10 +13,13 @@
             _cotizadorStrategy = GetCotizadorStrategy(moneda);
         }
 
-        private ICotizador GetCotizadorStrategy(Monedas moneda)
+        public Cotizador()
         {
-            
+            _cotizadorStrategy = GetCotizadorStrategy(Monedas.Pesos);
+        }
 
+        public ICotizadorStrategy GetCotizadorStrategy(Monedas moneda)
+        {
             switch (moneda)
             {
                 case Monedas.Pesos:
@@ -30,6 +33,11 @@
             }
         }
 
+        public Cotizacion GetCotizacion()
+        {
+            return _cotizadorStrategy.Cotizar();
+        }
+
         public Monedas Moneda
         {
             get { return _moneda; }
@@ -38,11 +46,6 @@
                 _moneda = value;
                 _cotizadorStrategy = GetCotizadorStrategy(value);
             }
-        }
-
-        public Cotizacion GetCotizacion()
-        {
-            return _cotizadorStrategy.Cotizar();
         }
     }
 }

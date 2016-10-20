@@ -6,14 +6,14 @@
 
     public class CotizacionService : ICotizacionService
     {
-        private Cotizador _cotizador;
+        private ICotizador _cotizador;
 
-        public CotizacionService(Cotizador cotizador)
+        public CotizacionService(ICotizador cotizador)
         {
             _cotizador = cotizador;
         }
 
-        public CotizacionService()
+        public CotizacionService():this(new Cotizador())
         {
         }
 
@@ -24,12 +24,7 @@
             if (!Enum.TryParse(moneda, out monedaValue))
                 throw new ArgumentOutOfRangeException(nameof(moneda), moneda, null);
 
-            if (_cotizador == null)
-                _cotizador = new Cotizador(monedaValue);
-            else
-                _cotizador.Moneda = monedaValue;
-
-            return _cotizador.GetCotizacion();
+            return _cotizador.GetCotizadorStrategy(monedaValue).Cotizar();
         }
     }
 

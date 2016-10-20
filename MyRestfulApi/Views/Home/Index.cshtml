@@ -1,24 +1,28 @@
 ﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>REST FUL API</h1>
 </div>
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+    <div class="col-md-10">
+        <h2>Consigna</h2>
+        <p>
+            Necesitaríamos que nos crees una aplicación en VS2013 framework 4.5 restfull web-api que exponga dos servicios.
+        </p>
+        <p>
+            1)Un servicio "cotización" que sea llamado con los parámetros de la moneda ej: http://localhost:8080/MyResftfullApp/Cotizacion/MONEDA, donde MONEDA podría ser "Dolar", "Pesos", "Real"; implementando el patrón Strategy para consumir los diferentes servicios.
+
+            El patrón strategy se puede leer desde http://www.oodesign.com/strategy/-pattern.html
+
+            Para los parámetros Pesos y Real, implementar un servicio que de una respuesta que sea error 401 no authorized de http. Para el parámetro Dólar implementar un servicio que consuma la cotización del dólar actual desde el servicio externo: http://www.bancoprovincia.com.ar/Principal/Dolar
+        </p>
+        <p>
+            2)Crear un servicio "usuarios" que devuelva todos los usuarios de una tabla "User" con los campos, id, nombre, apellido, email, password. Para esto deberás crear la base de datos, la tabla, popular con un script y empaquetar todos los datos necesarios para poder correr en otra computadora la aplicación y los servicios.
+        </p>
+        <p>
+            3)Crear unit test para la capa de servicios interna.
+
+            Necesitamos el código fuente, instrucciones y script para generar la base de datos y popularla con datos de prueba.
+        </p>
+            4)Subir el proyecto a github
+        </p>
     </div>
 </div>

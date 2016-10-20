@@ -4,6 +4,8 @@
 
     public interface ICotizador
     {
-        Cotizacion Cotizar();
+        Cotizacion GetCotizacion();
+        ICotizadorStrategy GetCotizadorStrategy(Monedas moneda);
+
     }
 }

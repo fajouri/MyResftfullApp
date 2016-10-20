@@ -6,7 +6,7 @@
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "REST FUL API";
 
             return View();
         }

@@ -1,23 +1,32 @@
 ﻿namespace MyRestfulApi.Services.Cotizadores
 {
-    using System;
-    using System.Configuration;
     using System.Globalization;
     using Core;
+    using Core.Helpers;
     using WebServices;
 
-    public class CotizadorDolar:ICotizador
+    public class CotizadorDolar:ICotizadorStrategy
     {
+        private readonly IWebRequestService _webRequestService;
+        private IConfigurationManagerHelper _configurationManagerHelper;
+
+        public CotizadorDolar(IWebRequestService webRequestService, IConfigurationManagerHelper configurationManagerHelper)
+        {
+            _webRequestService = webRequestService;
+            _configurationManagerHelper = configurationManagerHelper;
+        }
+
+        public CotizadorDolar() : this(new WebRequestService(), new ConfigurationManagerHelper())
+        {
+
+        }
+
         public Cotizacion Cotizar()
         {
-            var service = new WebRequestService();
 
-            var setting = ConfigurationManager.AppSettings["UrlCotizacionDolar"];
+            var setting = _configurationManagerHelper.GetAppSettings("UrlCotizacionDolar");
 
-            if (setting == null)
-                throw new Exception("Error de configuracion del Servidor");
-
-            var result = service.DoServiceCall(setting);
+            var result = _webRequestService.DoServiceCall(setting);
 
             var stringCotizacion = result.Replace("[","").Replace("]", "").Replace("\"","").Split(',');
 

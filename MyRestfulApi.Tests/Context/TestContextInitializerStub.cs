@@ -1,7 +1,6 @@
 ﻿namespace MyRestfulApi.Tests.Context
 {
     using Core;
-    using Services;
 
     internal class TestContextInitializerStub
     {

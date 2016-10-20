@@ -1,15 +1,8 @@
 ﻿namespace MyRestfulApi.Tests.Context
 {
-    using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Core;
     using Data;
-    using Services;
-
 
     public class MyRestfulApiTestContext : IMyRestfulApiContext
     {
@@ -18,14 +11,11 @@
 
         public MyRestfulApiTestContext()
         {
-            this.Usuarios = new TestDbSet<Usuario>();
-            this.Cotizaciones = new TestDbSet<Cotizacion>();
+            Usuarios = new TestDbSet<Usuario>();
+            Cotizaciones = new TestDbSet<Cotizacion>();
             Inicializar();
         }
 
-        private void Inicializar()
-        {
-            new TestContextInitializerStub(this);
-        }
+        private void Inicializar() => new TestContextInitializerStub(this);
     }
 }
