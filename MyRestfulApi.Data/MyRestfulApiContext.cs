@@ -11,7 +11,7 @@
 
         static MyRestfulApiContext()
         {
-            Database.SetInitializer(new MyRestfulApiDbInitializer());
+            //Database.SetInitializer(new MyRestfulApiDbInitializer());
         }
 
         public static MyRestfulApiContext Create()

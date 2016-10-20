@@ -26,7 +26,6 @@
 
         public IList<Usuario> GetUsuarios()
         {
-
             return _context.Usuarios.ToList();
         }
     }
