@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Net;
     using System.Web.Http;
     using Core;
     using Services;
@@ -21,14 +22,14 @@
         }
 
 
-        // GET api/<controller>
+        // GET <controller>
         public IEnumerable<Cotizacion> Get()
         {
-            yield break;
+            throw new HttpResponseException(HttpStatusCode.Unauthorized);
         }
 
-        // GET api/<controller>/5
-        [Route("api/Cotizacion/{moneda}")]
+        // GET <controller>/5
+        [Route("Cotizacion/{moneda}")]
         public Cotizacion Get(string moneda)
         {
             if (string.IsNullOrEmpty(moneda))
